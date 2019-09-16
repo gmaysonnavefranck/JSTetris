@@ -338,7 +338,14 @@
         </tr>
     </table></center>
     <script src=tetris.js>
+<h1>
+      <script type="text/javascript">
+        document.write(ponto)
+      </script>
+    </h1>
      
     </script>
+
+</body>
 </body>
 </html>

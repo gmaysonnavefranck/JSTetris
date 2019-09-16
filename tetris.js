@@ -8,7 +8,7 @@
          for(y = 1; y <11; y++)
             {
                 if((collisionMatrix[x][y] == 1))
-                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("O").css( "background-color", "red" );
+                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("O").css( "background-color", "green" );
                 else
                 $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("|X|").css( "background-color", "black" );
             }
@@ -17,7 +17,7 @@
     }
     function randomBlock()
     {
-        var rand = 2 //Math.floor(Math.random()*7)+1
+        var rand = Math.floor(Math.random()*7)+1
         if(rand == 1)
         {
             return drawSquare;
@@ -71,7 +71,7 @@
 
     function drawLine(linha, coluna, rotation)
     {
-       if(rotation == 0 || rotation == 180)
+       if(rotation == 90 || rotation == 270)
        {
         return {
             pos1: {
@@ -92,7 +92,7 @@
             }
         }
        }
-       if(rotation == 90 || rotation == 270)
+       if(rotation == 0 || rotation == 180)
        {
         return {
             pos1: {
@@ -119,120 +119,364 @@
     {
     
 
+        if(rotation == 0)
+       {
         return {
             pos1: {
-                line: x1,
-                column: y1
+                line: (linha*1-2),
+                column: (coluna*1)
             },
             pos2: {
-                line: x2,
-                column: y2
+                line: (linha*1-1),
+                column: (coluna*1)
             },
             pos3: {
-                line: x3,
-                column: y3
+                line: (linha*1),
+                column: (coluna*1)
             },
             pos4: {
-                line: x4,
-                column: y4
+                line: (linha*1),
+                column: (coluna*1+1)
             }
         }
+       }
+       if(rotation == 90 )
+       {
+        return {
+            pos1: {
+                line: (linha*1),
+                column: (coluna*1+2)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            }
+        }
+       }
+       if(rotation == 180)
+       {
+        return {
+            pos1: {
+                line: (linha*1+2),
+                column: (coluna*1)
+            },
+            pos2: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            }
+        }
+       }
+       if(rotation == 270)
+       {
+        return {
+            pos1: {
+                line: (linha*1),
+                column: (coluna*1-2)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1-1),
+                column: (coluna*1)
+            }
+        }
+       }
     }
 
     function drawReverseL(linha, coluna,rotation)
     {
+        if(rotation == 0)
+       {
         return {
             pos1: {
-                line: linha,
-                column: coluna
+                line: (linha*1-2),
+                column: (coluna*1)
             },
             pos2: {
-                line: (linha*1+1),
-                column: coluna
+                line: (linha*1-1),
+                column: (coluna*1)
             },
             pos3: {
-                line: (linha*1+2),
+                line: (linha*1),
                 column: (coluna*1)
             },
             pos4: {
-                line: (linha*1+2),
+                line: (linha*1),
                 column: (coluna*1-1)
             }
         }
+       }
+       if(rotation == 90 )
+       {
+        return {
+            pos1: {
+                line: (linha*1),
+                column: (coluna*1+2)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1-1),
+                column: (coluna*1)
+            }
+        }
+       }
+       if(rotation == 180)
+       {
+        return {
+            pos1: {
+                line: (linha*1+2),
+                column: (coluna*1)
+            },
+            pos2: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            }
+        }
+       }
+       if(rotation == 270)
+       {
+        return {
+            pos1: {
+                line: (linha*1),
+                column: (coluna*1-2)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            }
+        }
+       }
     }
 
     function drawS(linha, coluna,rotation)
     {
+        if(rotation == 0)
+       {
         return {
             pos1: {
-                line: linha,
-                column: coluna
+                line: (linha*1-1),
+                column: (coluna*1-1)
             },
             pos2: {
-                line: (linha*1+1),
-                column: coluna
+                line: (linha*1-1),
+                column: (coluna*1)
             },
             pos3: {
-                line: (linha*1+1),
-                column: (coluna*1+1)
+                line: (linha*1),
+                column: (coluna*1)
             },
             pos4: {
-                line: (linha*1+2),
+                line: (linha*1),
                 column: (coluna*1+1)
             }
         }
+       }
+       if(rotation == 90 )
+       {
+        return {
+            pos1: {
+                line: (linha*1-1),
+                column: (coluna*1+1)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            }
+        }
+       }
+       if(rotation == 180)
+       {
+        return {
+            pos1: {
+                line: (linha*1+1),
+                column: (coluna*1+1)
+            },
+            pos2: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            }
+        }
+       }
+       if(rotation == 270)
+       {
+        return {
+            pos1: {
+                line: (linha*1+1),
+                column: (coluna*1-1)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1-1),
+                column: (coluna*1)
+            }
+        }
+       }
     }
 
     function drawReverseS(linha, coluna,rotation)
     {
+        if(rotation == 0)
+       {
         return {
             pos1: {
-                line: linha,
-                column: coluna
+                line: (linha*1-1),
+                column: (coluna*1+1)
             },
             pos2: {
-                line: (linha*1+1),
-                column: coluna
+                line: (linha*1-1),
+                column: (coluna*1)
             },
             pos3: {
-                line: (linha*1+1),
-                column: (coluna*1-1)
+                line: (linha*1),
+                column: (coluna*1)
             },
             pos4: {
-                line: (linha*1+2),
+                line: (linha*1),
                 column: (coluna*1-1)
             }
         }
-    }
-    function drawT(linha, coluna,rotation)
-    {
+       }
+       if(rotation == 90 )
+       {
         return {
             pos1: {
-                line: linha,
-                column: coluna
-            },
-            pos2: {
-                line: (linha*1+1),
-                column: coluna
-            },
-            pos3: {
                 line: (linha*1+1),
                 column: (coluna*1+1)
             },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
             pos4: {
-                line: (linha*1+2),
+                line: (linha*1-1),
                 column: (coluna*1)
             }
         }
+       }
+       if(rotation == 180)
+       {
+        return {
+            pos1: {
+                line: (linha*1+1),
+                column: (coluna*1-1)
+            },
+            pos2: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            }
+        }
+       }
+       if(rotation == 270)
+       {
+        return {
+            pos1: {
+                line: (linha*1-1),
+                column: (coluna*1-1)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            }
+        }
+       }
+        
     }
     function drawBlock(block, line, column,rotation)
     {
         if(rotation > 270)
         rotation = 0
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos1.line + ") > td:eq(" + block(line, column,rotation).pos1.column + ")").text("O").css( "background-color", "red" );
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos2.line + ") > td:eq(" + block(line, column,rotation).pos2.column + ")").text("O").css( "background-color", "red" );
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos3.line + ") > td:eq(" + block(line, column,rotation).pos3.column + ")").text("O").css( "background-color", "red" );
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos4.line + ") > td:eq(" + block(line, column,rotation).pos4.column + ")").text("O").css( "background-color", "red"  );
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos1.line + ") > td:eq(" + block(line, column,rotation).pos1.column + ")").text("O").css( "background-color", "green" );
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos2.line + ") > td:eq(" + block(line, column,rotation).pos2.column + ")").text("O").css( "background-color", "green" );
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos3.line + ") > td:eq(" + block(line, column,rotation).pos3.column + ")").text("O").css( "background-color", "green" );
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos4.line + ") > td:eq(" + block(line, column,rotation).pos4.column + ")").text("O").css( "background-color", "green"  );
     }
     function fixBlock(block, line, column)
     {
@@ -274,6 +518,7 @@
                     console.log("linha:",x,sum);
                     if(sum == 10)
                     {
+                      ponto = ponto+100;
                         for(k = 1; k<11; k++)
                             collisionMatrix[x][k] = 0;
                             for(i = x; i>0; i--)
@@ -290,9 +535,10 @@
         }      
 
     var actualKey = null;
-    var actualLine = 1;
-    var actualColumn = 4;
+    var actualLine = 2;
+    var actualColumn = 5;
     var rotation = 0;
+    var ponto = 0;
     var blockLanded = 0;
     var actualBlock = randomBlock();
     var collisionMatrix = [
@@ -314,9 +560,9 @@
     [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
-    [1,1,0,0,0,0,0,0,0,1,0,1],
-    [1,1,0,0,0,0,0,0,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,1,1,1,1,1,1,1,1,1,1,1]]
 
     $(document).on('keydown', function(evt){
@@ -355,13 +601,18 @@
 
         if(blockLanded == 2)
         {
+          if(collisionCheck(actualBlock, actualLine+1, actualColumn, collisionMatrix,rotation) == 1)
+          {
             fixBlock(actualBlock, actualLine, actualColumn,rotation);
             actualBlock = randomBlock();
             rotation = 0
             blockLanded = 0;
-            actualLine = 1;
-            actualColumn = 4;
+            actualLine = 2;
+            actualColumn = 5;
             lineCheck(collisionMatrix);
+          }
+          else
+          blockLanded = 0;
         }
         if(collisionCheck(actualBlock, actualLine+1, actualColumn, collisionMatrix,rotation) == 1)
         {
