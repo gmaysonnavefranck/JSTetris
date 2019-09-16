@@ -3,14 +3,14 @@
     function clearBoard(collisionMatrix)
     {
         var x, y;
-        for(x = 0; x <20; x++)
+        for(x = 1; x <21; x++)
         {
-         for(y = 1; y <13; y++)
+         for(y = 1; y <11; y++)
             {
                 if((collisionMatrix[x][y] == 1))
-                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("O");
+                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("O").css( "background-color", "red" );
                 else
-                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("|X|");
+                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("|X|").css( "background-color", "black" );
             }
 
         }   
@@ -18,7 +18,6 @@
     function randomBlock()
     {
         var rand = 2 //Math.floor(Math.random()*7)+1
-        console.log(rand);
         if(rand == 1)
         {
             return drawSquare;
@@ -48,7 +47,7 @@
             return drawReverseS
         }
     }
-    function drawSquare(linha, coluna)
+    function drawSquare(linha, coluna,rotation)
     {
         return {
             pos1: {
@@ -70,51 +69,77 @@
         }
     }
 
-    function drawLine(linha, coluna)
+    function drawLine(linha, coluna, rotation)
     {
+       if(rotation == 0 || rotation == 180)
+       {
         return {
             pos1: {
+                line: linha,
+                column: (coluna*1-1)
+            },
+            pos2: {
                 line: (linha*1),
                 column: (coluna*1)
             },
-            pos2: {
-                line: (linha*1+1),
-                column: (coluna*1)
-            },
             pos3: {
-                line: (linha*1+2),
-                column: (coluna*1)
+                line: (linha*1),
+                column: (coluna*1+1)
             },
             pos4: {
-                line: (linha*1+3),
-                column: (coluna*1)
+                line: (linha*1),
+                column: (coluna*1+2)
             }
         }
-    }
-
-    function drawL(linha, coluna)
-    {
+       }
+       if(rotation == 90 || rotation == 270)
+       {
         return {
             pos1: {
-                line: linha,
+                line: (linha*1-1),
                 column: coluna
             },
             pos2: {
-                line: (linha*1+1),
-                column: coluna
+                line: (linha*1),
+                column: (coluna)
             },
             pos3: {
-                line: (linha*1+2),
+                line: (linha*1+1),
                 column: (coluna*1)
             },
             pos4: {
                 line: (linha*1+2),
-                column: (coluna*1+1)
+                column: (coluna*1)
+            }
+        }
+       }
+    }
+
+    function drawL(linha, coluna,rotation)
+    {
+    
+
+        return {
+            pos1: {
+                line: x1,
+                column: y1
+            },
+            pos2: {
+                line: x2,
+                column: y2
+            },
+            pos3: {
+                line: x3,
+                column: y3
+            },
+            pos4: {
+                line: x4,
+                column: y4
             }
         }
     }
 
-    function drawReverseL(linha, coluna)
+    function drawReverseL(linha, coluna,rotation)
     {
         return {
             pos1: {
@@ -136,7 +161,7 @@
         }
     }
 
-    function drawS(linha, coluna)
+    function drawS(linha, coluna,rotation)
     {
         return {
             pos1: {
@@ -158,7 +183,7 @@
         }
     }
 
-    function drawReverseS(linha, coluna)
+    function drawReverseS(linha, coluna,rotation)
     {
         return {
             pos1: {
@@ -179,7 +204,7 @@
             }
         }
     }
-    function drawT(linha, coluna)
+    function drawT(linha, coluna,rotation)
     {
         return {
             pos1: {
@@ -200,28 +225,34 @@
             }
         }
     }
-    function drawBlock(block, line, column)
+    function drawBlock(block, line, column,rotation)
     {
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column).pos1.line + ") > td:eq(" + block(line, column).pos1.column + ")").text("O");
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column).pos2.line + ") > td:eq(" + block(line, column).pos2.column + ")").text("O");
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column).pos3.line + ") > td:eq(" + block(line, column).pos3.column + ")").text("O");
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column).pos4.line + ") > td:eq(" + block(line, column).pos4.column + ")").text("O");
+        if(rotation > 270)
+        rotation = 0
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos1.line + ") > td:eq(" + block(line, column,rotation).pos1.column + ")").text("O").css( "background-color", "red" );
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos2.line + ") > td:eq(" + block(line, column,rotation).pos2.column + ")").text("O").css( "background-color", "red" );
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos3.line + ") > td:eq(" + block(line, column,rotation).pos3.column + ")").text("O").css( "background-color", "red" );
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos4.line + ") > td:eq(" + block(line, column,rotation).pos4.column + ")").text("O").css( "background-color", "red"  );
     }
     function fixBlock(block, line, column)
     {
-        collisionMatrix[block(line, column).pos1.line][block(line, column).pos1.column] = 1;
-        collisionMatrix[block(line, column).pos2.line][block(line, column).pos2.column] = 1;
-        collisionMatrix[block(line, column).pos3.line][block(line, column).pos3.column] = 1; 
-        collisionMatrix[block(line, column).pos4.line][block(line, column).pos4.column] = 1;
+        if(rotation > 270)
+        rotation = 0
+        collisionMatrix[block(line, column,rotation).pos1.line][block(line, column,rotation).pos1.column] = 1;
+        collisionMatrix[block(line, column,rotation).pos2.line][block(line, column,rotation).pos2.column] = 1;
+        collisionMatrix[block(line, column,rotation).pos3.line][block(line, column,rotation).pos3.column] = 1; 
+        collisionMatrix[block(line, column,rotation).pos4.line][block(line, column,rotation).pos4.column] = 1;
         console.log(collisionMatrix);
 
     }
-    function collisionCheck(block, line, column, collisionMatrix )
+    function collisionCheck(block, line, column, collisionMatrix,rotation )
     {
-        if(collisionMatrix[block(line, column).pos1.line][block(line, column).pos1.column] == 1 || 
-        collisionMatrix[block(line, column).pos2.line][block(line, column).pos2.column] == 1 ||
-        collisionMatrix[block(line, column).pos3.line][block(line, column).pos3.column] == 1 ||
-        collisionMatrix[block(line, column).pos4.line][block(line, column).pos4.column] == 1)
+        if(rotation > 270)
+        rotation = 0
+        if(collisionMatrix[block(line, column,rotation).pos1.line][block(line, column,rotation).pos1.column] == 1 || 
+        collisionMatrix[block(line, column,rotation).pos2.line][block(line, column,rotation).pos2.column] == 1 ||
+        collisionMatrix[block(line, column,rotation).pos3.line][block(line, column,rotation).pos3.column] == 1 ||
+        collisionMatrix[block(line, column,rotation).pos4.line][block(line, column,rotation).pos4.column] == 1)
         {
             console.log('fodase');
             return 1;
@@ -231,7 +262,7 @@
     }
     function lineCheck(collisionMatrix)
     {
-        for(x = 19; x > 0; x--)
+        for(x = 20; x > 0; x--)
         {
             var sum = 0;
             for( y = 1 ; y <11; y ++)
@@ -259,11 +290,13 @@
         }      
 
     var actualKey = null;
-    var actualLine = 0;
+    var actualLine = 1;
     var actualColumn = 4;
+    var rotation = 0;
     var blockLanded = 0;
     var actualBlock = randomBlock();
     var collisionMatrix = [
+    [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,1],
@@ -293,38 +326,50 @@
 
     setInterval(function (){
         clearBoard(collisionMatrix);
+        if(rotation > 270)
+        rotation = 0
         if (actualKey == 37) {
-            if(collisionCheck(actualBlock, actualLine, actualColumn-1, collisionMatrix) == 1)
+            if(collisionCheck(actualBlock, actualLine, actualColumn-1, collisionMatrix,rotation) == 1)
             {
-                console.log('aqui');
             }
             else
             actualColumn--;
         }
         if (actualKey == 39) {
-            if(collisionCheck(actualBlock, actualLine, actualColumn+1, collisionMatrix) == 1)
+            if(collisionCheck(actualBlock, actualLine, actualColumn+1, collisionMatrix, rotation) == 1)
             {
             }
             else
             actualColumn++;
         }
+        if (actualKey == 32) {
+                if((collisionCheck(actualBlock, actualLine, actualColumn, collisionMatrix, (rotation+90) ) || 
+                (collisionCheck(actualBlock, actualLine, actualColumn, collisionMatrix, 0 )) == 1))
+                {}
+                else
+                {
+                    rotation +=90;
+                }
+                     console.log(rotation);
+        }
 
         if(blockLanded == 2)
         {
-            fixBlock(actualBlock, actualLine, actualColumn);
+            fixBlock(actualBlock, actualLine, actualColumn,rotation);
             actualBlock = randomBlock();
+            rotation = 0
             blockLanded = 0;
-            actualLine = 0;
+            actualLine = 1;
             actualColumn = 4;
             lineCheck(collisionMatrix);
         }
-        if(collisionCheck(actualBlock, actualLine+1, actualColumn, collisionMatrix) == 1)
+        if(collisionCheck(actualBlock, actualLine+1, actualColumn, collisionMatrix,rotation) == 1)
         {
-            drawBlock(actualBlock, actualLine, actualColumn);
+            drawBlock(actualBlock, actualLine, actualColumn,rotation);
             blockLanded++;
         }
         else
-            drawBlock(actualBlock, actualLine++, actualColumn);
+            drawBlock(actualBlock, actualLine++, actualColumn,rotation);
         
         actualKey = null;
     }, 150);
