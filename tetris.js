@@ -567,6 +567,8 @@
     }
     function fixBlock(block, line, column)
     {
+        if(line == 2)
+            perdeu = 1;
         if(rotation > 270)
         rotation = 0
         collisionMatrix[block(line, column,rotation).pos1.line][block(line, column,rotation).pos1.column] = 1;
@@ -627,6 +629,7 @@
     var actualColumn = 5;
     var rotation = 0;
     var ponto = 0;
+    var perdeu = 0;
     var blockLanded = 0;
     var actualBlock = randomBlock();
     var collisionMatrix = [
@@ -711,6 +714,16 @@
             drawBlock(actualBlock, actualLine++, actualColumn,rotation);
         
         actualKey = null;
+        if(perdeu == 1)
+        {
+            for(x = 1; x <21; x++)
+            {
+             for(y = 1; y <11; y++)
+                {
+                    $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("|X|").css( "background-color", "red" );
+                }
+        }
+    }
     }, 150);
 
 }))
