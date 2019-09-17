@@ -1,3 +1,2 @@
 <?php
-
 require 'drawScreen.php';

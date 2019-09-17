@@ -68,6 +68,93 @@
             }
         }
     }
+    function drawT(linha, coluna,rotation)
+    {
+        if(rotation == 0)
+       {
+        return {
+            pos1: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            },
+            pos2: {
+                line: (linha*1-1),
+                column: (coluna*1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            }
+        }
+       }
+       if(rotation == 90 )
+       {
+        return {
+            pos1: {
+                line: (linha*1-1),
+                column: (coluna*1)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            }
+        }
+       }
+       if(rotation == 180)
+       {
+        return {
+            pos1: {
+                line: (linha*1),
+                column: (coluna*1+1)
+            },
+            pos2: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            }
+        }
+       }
+       if(rotation == 270)
+       {
+        return {
+            pos1: {
+                line: (linha*1+1),
+                column: (coluna*1)
+            },
+            pos2: {
+                line: (linha*1),
+                column: (coluna*1-1)
+            },
+            pos3: {
+                line: (linha*1),
+                column: (coluna*1)
+            },
+            pos4: {
+                line: (linha*1-1),
+                column: (coluna*1)
+            }
+        }
+       }
+    }
 
     function drawLine(linha, coluna, rotation)
     {
@@ -519,6 +606,7 @@
                     if(sum == 10)
                     {
                       ponto = ponto+100;
+                      $("#ponto:eq(" + ponto + ")")
                         for(k = 1; k<11; k++)
                             collisionMatrix[x][k] = 0;
                             for(i = x; i>0; i--)

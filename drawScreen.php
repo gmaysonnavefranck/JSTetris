@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tetris</title>
+    
     <style>
 
 .d-none{
@@ -26,6 +29,7 @@
     
 </head>
 <body>
+<script type="text/javascript" src="Audio-HTML5.js"></script>
 <center>
     <table id="tabuleiro">
     <tr class="d-none">
@@ -336,16 +340,10 @@
             <td></td>
             <td></td>
         </tr>
-    </table></center>
+    </table>
+    <h1 id= "ponto">    </h1></center>
     <script src=tetris.js>
-<h1>
-      <script type="text/javascript">
-        document.write(ponto)
-      </script>
-    </h1>
-     
     </script>
 
-</body>
 </body>
 </html>
