@@ -9,16 +9,28 @@
     <title>Tetris</title>
     
     <style>
+    .bloco {
+        background-color: green;
+    }
+    .fundo {
+        
+    }
 
 .d-none{
             display: none;
         }
+        .final 
+        {
+            background-color:red;
+        }
         table {
             border: 1px solid black;
+            border-collapse: collapse;
 
         }
         td {
-            padding: 5px;
+            padding: 15px;
+            background-color: black;
         }
     .color{
         background-color:blue;
@@ -29,7 +41,10 @@
     
 </head>
 <body>
-<script type="text/javascript" src="Audio-HTML5.js"></script>
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 <center>
     <table id="tabuleiro">
     <tr class="d-none">
@@ -89,6 +104,7 @@
             <td></td>
         </tr>
         <tr>
+            <td  class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -99,10 +115,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -113,10 +129,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -127,10 +143,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -141,10 +157,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -155,10 +171,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -169,10 +185,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -183,10 +199,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -197,10 +213,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -211,10 +227,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -225,10 +241,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -239,10 +255,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -253,10 +269,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -267,10 +283,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -281,10 +297,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -295,10 +311,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -309,10 +325,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
+            <td class="d-none"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -323,25 +339,24 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
+            <td class="d-none"></td>
         </tr>
     </table>
-    <h1 id= "ponto">    </h1></center>
+    <h1 id= "ponto"> </h1></center>
     <script src=tetris.js>
     </script>
 

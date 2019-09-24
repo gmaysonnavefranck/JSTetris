@@ -8,9 +8,9 @@
          for(y = 1; y <11; y++)
             {
                 if((collisionMatrix[x][y] == 1))
-                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("O").css( "background-color", "green" );
+                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").addClass("bloco");
                 else
-                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("|X|").css( "background-color", "black" );
+                $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").removeClass("bloco");
             }
 
         }   
@@ -560,10 +560,10 @@
     {
         if(rotation > 270)
         rotation = 0
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos1.line + ") > td:eq(" + block(line, column,rotation).pos1.column + ")").text("O").css( "background-color", "green" );
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos2.line + ") > td:eq(" + block(line, column,rotation).pos2.column + ")").text("O").css( "background-color", "green" );
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos3.line + ") > td:eq(" + block(line, column,rotation).pos3.column + ")").text("O").css( "background-color", "green" );
-        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos4.line + ") > td:eq(" + block(line, column,rotation).pos4.column + ")").text("O").css( "background-color", "green"  );
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos1.line + ") > td:eq(" + block(line, column,rotation).pos1.column + ")").addClass("bloco");
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos2.line + ") > td:eq(" + block(line, column,rotation).pos2.column + ")").addClass("bloco");
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos3.line + ") > td:eq(" + block(line, column,rotation).pos3.column + ")").addClass("bloco");
+        $("#tabuleiro > tbody > tr:eq(" + block(line, column,rotation).pos4.line + ") > td:eq(" + block(line, column,rotation).pos4.column + ")").addClass("bloco");
     }
     function fixBlock(block, line, column)
     {
@@ -608,7 +608,6 @@
                     if(sum == 10)
                     {
                       ponto = ponto+100;
-                      $("#ponto:eq(" + ponto + ")")
                         for(k = 1; k<11; k++)
                             collisionMatrix[x][k] = 0;
                             for(i = x; i>0; i--)
@@ -687,7 +686,6 @@
                 {
                     rotation +=90;
                 }
-                     console.log(rotation);
         }
 
         if(blockLanded == 2)
@@ -701,6 +699,7 @@
             actualLine = 2;
             actualColumn = 5;
             lineCheck(collisionMatrix);
+            $("#ponto").text(ponto);
           }
           else
           blockLanded = 0;
@@ -716,13 +715,7 @@
         actualKey = null;
         if(perdeu == 1)
         {
-            for(x = 1; x <21; x++)
-            {
-             for(y = 1; y <11; y++)
-                {
-                    $("#tabuleiro > tbody > tr:eq(" + x + ") > td:eq(" + y + ")").text("|X|").css( "background-color", "red" );
-                }
-        }
+            $("#tabuleiro > tbody > tr > td").addClass("final");
     }
     }, 150);
 
