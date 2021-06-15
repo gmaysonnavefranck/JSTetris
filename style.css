@@ -1,0 +1,111 @@
+.d-none {
+  display: none;
+}
+
+.gameOver {
+  background-color: red;
+  -webkit-box-shadow: inset 0px 0px 0px 1px black;
+  -moz-box-shadow: inset 0px 0px 0px 1px black;
+  box-shadow: inset 0px 0px 0px 1px black;
+  background: linear-gradient(to bottom, red 2%, #6c7c7c 100%);
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+h1,
+h2 {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin: 5px auto;
+}
+
+td {
+  padding: 15px;
+  background-color: #cacaca;
+}
+
+.block {
+  background-color: #37c09b;
+  -webkit-box-shadow: inset 0px 0px 0px 1px black;
+  -moz-box-shadow: inset 0px 0px 0px 1px black;
+  box-shadow: inset 0px 0px 0px 1px black;
+  background: linear-gradient(to bottom, #37c09b 5%, #6c7c7c 100%);
+}
+
+#title {
+  text-align: center;
+  position: relative;
+  color: #fff;
+  margin: -25px -30px 30px -30px;
+  padding: 10px 0;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.8);
+  border-radius: 25px 25px 0px 0px;
+  background-color: black;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+#title::before,
+#title::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: transparent;
+  bottom: -10px;
+}
+
+#title::before {
+  border-width: 0 10px 10px 0;
+  border-right-color: #222;
+  left: 0;
+}
+
+#title::after {
+  border-width: 0 0 10px 10px;
+  border-left-color: #222;
+  right: 0;
+}
+
+#container {
+  width: 400px;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-width: 5px 5px;
+  border-color: #222;
+  background-color: #999;
+  border-radius: 25px;
+}
+
+body {
+  margin: 20px;
+}
+
+html {
+  margin: 0;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.unfocus {
+  filter: blur(10px);
+}
+
+#pause {
+  text-align: center;
+  position: relative;
+  color: rgb(158, 25, 25);
+  margin: -350px -30px 318px -30px;
+  display: none;
+}
