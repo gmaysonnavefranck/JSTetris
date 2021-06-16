@@ -3,7 +3,7 @@ import game from './gameFunctions.js';
 
 game.table = document.querySelector('#table');
 game.createTable();
-game.rows = document.querySelectorAll('#table tr');
+game.rows = game.readRows(document.querySelectorAll('#table tr'));
 game.init();
 game.point = document.querySelector('#point');
 game.pause = document.querySelector('#pause');
