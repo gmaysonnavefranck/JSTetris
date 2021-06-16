@@ -88,57 +88,59 @@ let game = {
     [1,0,0,0,0,0,0,0,0,0,0,1],
     [1,1,1,1,1,1,1,1,1,1,1,1]];
 
-    game.rows.forEach(row => row.querySelectorAll('td').forEach(cell => {
+    this.rows.forEach(row => row.cols.forEach(cell => {
       cell.classList.remove('gameOver');
     }));
 
   },
 
+  readRows: function(trs) {
+    return [].map.call(trs, tr => Object.assign(tr, {cols: tr.querySelectorAll('td')}));
+  },
+
   clearBoard: function() {
     for(let x = 1; x < 21; x++) {
       for(let y = 1; y < 11; y++) {
+        const classList = this.rows[x].cols[y].classList;
+        classList.remove('block');
+
         if((this.collisionMatrix[x][y] === 1)) 
-          this.rows[x].querySelectorAll('td')[y].classList.add('block');
-        else
-          this.rows[x].querySelectorAll('td')[y].classList.remove('block');
+          classList.add('block');
       }
-    }   
+    }
   },
 
   lineCheck: function () {
     for(let x = 20; x > 0; x--) {
-        let sum = 0;
-        for(let y = 1; y < 11; y++) {
-            if(this.collisionMatrix[x][y] === 1) {
-                sum++;
-                if(sum === 10) {
-                  this.points += 100;
-                    for(let k = 1; k < 11; k++)
-                            this.collisionMatrix[x][k] = 0;
-                    for(let i = x; i > 0; i--)
-                        for(let j = 1; j < 11; j++)
-                        {
-                            this.collisionMatrix[i][j] = this.collisionMatrix[i-1][j];
-                            this.collisionMatrix[i-1][j]=0;
-                        }  
-                    this.lineCheck();  
-                }
-            }
-        }
+      let sum = 0;
+      for(let y = 1; y < 11; y++) {
+        if(this.collisionMatrix[x][y] !== 1)
+          continue;
+
+        if(++sum !== 10)
+          continue;
+
+        this.points += 100;
+        for(let k = 1; k < 11; k++)
+          this.collisionMatrix[x][k] = 0;
+        
+        this.collisionMatrix.unshift(this.collisionMatrix.splice(x, 1)[0]);
+        x++;
+      }
     }
   },
 
   collisionCheck: function(block, line, column, rotation) {
     if(rotation > 270) 
       rotation = 0;
+
     if(this.collisionMatrix[block(line, column,rotation).pos1.line][block(line, column,rotation).pos1.column] === 1 || 
-       this.collisionMatrix[block(line, column,rotation).pos2.line][block(line, column,rotation).pos2.column] === 1 ||
-       this.collisionMatrix[block(line, column,rotation).pos3.line][block(line, column,rotation).pos3.column] === 1 ||
-       this.collisionMatrix[block(line, column,rotation).pos4.line][block(line, column,rotation).pos4.column] === 1){ 
-        return 1;
-       }
-    else
-      return 0;
+      this.collisionMatrix[block(line, column,rotation).pos2.line][block(line, column,rotation).pos2.column] === 1 ||
+      this.collisionMatrix[block(line, column,rotation).pos3.line][block(line, column,rotation).pos3.column] === 1 ||
+      this.collisionMatrix[block(line, column,rotation).pos4.line][block(line, column,rotation).pos4.column] === 1) {
+      return 1;
+    }
+    return 0;
   },
 
   fixBlock: function(block, line, column, rotation) {
@@ -177,7 +179,7 @@ let game = {
   },
 
   randomBlock: function() {
-    let rand = Math.floor(Math.random()*7)+1
+    let rand = Math.floor(Math.random()*7)+1;
     switch(rand){
       case 1:
         return tetriminos.drawSquare;
