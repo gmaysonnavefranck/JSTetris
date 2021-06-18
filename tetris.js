@@ -1,5 +1,6 @@
 (function(game){
     'use strict';
+    window.alert('Use the left and right arrows to move, space to rotate, p to pause and r to restart!');
     game.table = document.querySelector('#table');
     game.createTable();
     game.rows = game.readRows(document.querySelectorAll('#table tr'));
